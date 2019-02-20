@@ -1,7 +1,7 @@
 import time
 
 class PrimeNumbers:
-    N = 10000
+    N = 1000
     nums = [i+1 for i in range(1, N)]
     boolNums = [True for i in range(1, N)]
 
@@ -20,7 +20,7 @@ class PrimeNumbers:
     def Sieve(_nums = nums, _N=N):
         start_time= time.time()
         for n in range(2, _N):
-            for m in range(n*n, _N, n):
+            for m in range(n*n-1, _N-1, n):
                     _nums[m]=-1
                     #_nums.remove(m)
         print(_nums)
@@ -28,3 +28,6 @@ class PrimeNumbers:
 
 #PrimeNumbers.SlowMethod()
 PrimeNumbers.Sieve()
+
+#for a in range(1, 11, 5):
+#    print(a)
