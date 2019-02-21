@@ -6,6 +6,7 @@ class PrimeNumbers:
     boolNums = [True for i in range(1, N)]
 
     #Медленный метод
+    @staticmethod
     def SlowMethod(N=N):
         start_time= time.time()
         nums = [i+1 for i in range(1, N)]
@@ -17,6 +18,7 @@ class PrimeNumbers:
         print('Slow Time: '+str(round(time.time()-start_time, 6)))
 
     #Решето
+    @staticmethod
     def Sieve(_nums = nums, _N=N):
         start_time= time.time()
         for n in range(2, _N):
