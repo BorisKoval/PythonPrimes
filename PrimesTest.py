@@ -1,35 +1,50 @@
 import time
+import sys
 
 class PrimeNumbers:
-    N = 1000
-    nums = [i+1 for i in range(1, N)]
-    boolNums = [True for i in range(1, N)]
+    N = 0
+    nums = list(range(2, N))
+
+    def __init__(self, n = 100):
+        self.N = n
+        self.nums = list(range(2, n))
 
     #Медленный метод
-    @staticmethod
-    def SlowMethod(N=N):
+    #@staticmethod
+    def SlowMethod(self):
+        _nums = self.nums.copy()
         start_time= time.time()
-        nums = [i+1 for i in range(1, N)]
-        for n in nums:
-            for m in nums[1:]:
+        for n in _nums:
+            for m in _nums[1:]:
                 if n!=m and m % n == 0:
-                    nums.remove(m)
+                    _nums.remove(m)
         #print(nums)
-        print('Slow Time: '+str(round(time.time()-start_time, 6)))
+        print('Slow Time: '+str(round(time.time()-start_time, 5)))
 
     #Решето
-    @staticmethod
-    def Sieve(_nums = nums, _N=N):
+    #@staticmethod
+    def SieveMethod(self):
+        _nums = self.nums.copy()
         start_time= time.time()
-        for n in range(2, _N):
-            for m in range(n*n-1, _N-1, n):
+        for n in range(0, self.N-2):
+            if _nums[n]<0:
+                continue
+            for m in range(n+_nums[n], self.N-2, _nums[n]):
                     _nums[m]=-1
-                    #_nums.remove(m)
-        print(_nums)
-        print('Sieve Time: '+str(round(time.time()-start_time, 6)))
+        #print(_nums)
+        print('Sieve Time: '+str(round(time.time()-start_time, 5)))
 
-#PrimeNumbers.SlowMethod()
-PrimeNumbers.Sieve()
+    #Мой метод
+    def FastMethod(self):   
+        print('FastMethod')
 
-#for a in range(1, 11, 5):
-#    print(a)
+
+    def ExecuteAllMethods(self):
+        print('\n*********************')
+        print('N = '+str(self.N))
+        self.SlowMethod()
+        self.SieveMethod()
+        print('********************\n')
+
+
+PrimeNumbers(2500).ExecuteAllMethods()
