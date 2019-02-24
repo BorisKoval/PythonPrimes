@@ -1,5 +1,6 @@
 import time
 import sys
+import math
 
 class PrimeNumbers:
     N = 0
@@ -35,16 +36,24 @@ class PrimeNumbers:
         print('Sieve Time: '+str(round(time.time()-start_time, 5)))
 
     #Мой метод
-    def FastMethod(self):   
-        print('FastMethod')
+    #@staticmethod
+    def FastMethod(self, arr, index = 0):
+        if math.sqrt(max(arr)) < arr[index]:
+            return arr
+        return self.FastMethod(list(filter(lambda x: x==arr[index] or x % arr[index] != 0, arr)), index + 1)
 
 
     def ExecuteAllMethods(self):
         print('\n*********************')
         print('N = '+str(self.N))
-        self.SlowMethod()
+        #self.SlowMethod()
         self.SieveMethod()
+
+        start_time= time.time()
+        self.FastMethod(self.nums)
+        print('FastMethod Time: '+str(round(time.time()-start_time, 5)))
+
         print('********************\n')
 
 
-PrimeNumbers(2500).ExecuteAllMethods()
+PrimeNumbers(70000).ExecuteAllMethods()
